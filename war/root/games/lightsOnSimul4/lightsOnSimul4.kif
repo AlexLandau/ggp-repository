@@ -183,3 +183,35 @@
 (succ 17 18)
 (succ 18 19)
 (succ 19 20)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Bases and inputs
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(lightValue 4)
+(lightValue 3)
+(lightValue 2)
+(lightValue 1)
+(lightValue 0)
+
+(<= (index ?n)
+    (index1 ?n))
+(<= (index ?n)
+    (index2 ?n))
+(<= (base (cell ?x ?y ?value))
+    (index ?x)
+    (index ?y)
+    (lightValue ?value))
+(base (step 0))
+(<= (base (step ?b))
+    (succ ?a ?b))
+
+(<= (input robot (press ?x1 ?y1 ?x2 ?y2 ?x3 ?y3 ?x4 ?y4))
+    (index1 ?x1)
+    (index1 ?y1)
+    (index1 ?x2)
+    (index2 ?y2)
+    (index2 ?x3)
+    (index1 ?y3)
+    (index2 ?x4)
+    (index2 ?y4))
