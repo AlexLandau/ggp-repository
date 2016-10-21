@@ -42,13 +42,6 @@
 	(true (position ?role 15 4))
 	(role ?role))
 
-;(<= dead
-;	(true (position ?role ?x ?y))
-;	(role ?role)
-;	(range ?y)
-;	(true (round ?r))
-;	(smallerThan ?x ?r))
-
 (<= terminal
 	(true (position ?role ?x ?y))
 	(role ?role)
@@ -170,3 +163,14 @@
 (field 15 2)
 (field 15 3)
 (field 15 4)
+
+; Bases and inputs
+
+(<= (base (position kitten ?x ?y))
+    (field ?x ?y))
+(base (round 0))
+(<= (base (round ?y))
+    (succ ?x ?y))
+
+(<= (input kitten (move ?x ?y))
+    (field ?x ?y))
