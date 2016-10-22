@@ -132,3 +132,25 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (index 1) (index 2) (index 3)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Bases and Inputs
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(<= (base (mark ?i ?j x))
+    (index ?i)
+    (index ?j))
+(<= (base (mark ?i ?j o))
+    (index ?i)
+    (index ?j))
+(<= (base (control ?role))
+    (role ?role))
+
+(<= (input ?role noop)
+    (role ?role))
+(<= (input xPlayer (play ?i ?j x))
+    (index ?i)
+    (index ?j))
+(<= (input oPlayer (play ?i ?j o))
+    (index ?i)
+    (index ?j))

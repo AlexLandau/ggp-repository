@@ -21,29 +21,29 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (<= (next (ecks ?m))
-(does xplayer (mark ?m))
-(true (blank ?m)))
+    (does xplayer (mark ?m))
+    (true (blank ?m)))
 
 (<= (next (oh ?m))
-(does oplayer (mark ?m))
-(true (blank ?m)))
+    (does oplayer (mark ?m))
+    (true (blank ?m)))
 
 (<= (next (ecks ?m))
-(true (ecks ?m)))
+    (true (ecks ?m)))
 
 (<= (next (oh ?m))
-(true (oh ?m)))
+    (true (oh ?m)))
 
 (<= (next (blank ?m))
-(does ?w (mark ?n))
-(true (blank ?m))
-(distinct ?m ?n))
+    (does ?w (mark ?n))
+    (true (blank ?m))
+    (distinct ?m ?n))
 
 (<= (next (control xplayer))
-(true (control oplayer)))
+    (true (control oplayer)))
 
 (<= (next (control oplayer))
-(true (control xplayer)))
+    (true (control xplayer)))
 
 (line a b c)
 (line a d g)
@@ -55,63 +55,87 @@
 (line c e g)
 
 (<= xline
-(line ?a ?b ?c)
-(true (ecks ?a))
-(true (ecks ?b))
-(true (ecks ?c)))
+    (line ?a ?b ?c)
+    (true (ecks ?a))
+    (true (ecks ?b))
+    (true (ecks ?c)))
 
 (<= oline
-(line ?a ?b ?c)
-(true (oh ?a))
-(true (oh ?b))
-(true (oh ?c)))
+    (line ?a ?b ?c)
+    (true (oh ?a))
+    (true (oh ?b))
+    (true (oh ?c)))
 
 (<= open
-(true (blank ?m)))
+    (true (blank ?m)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (<= (legal ?player (mark ?y))
-(true (blank ?y))
-(true (control ?player)))
+    (true (blank ?y))
+    (true (control ?player)))
 
 (<= (legal oplayer noop)
-(true (control xplayer)))
+    (true (control xplayer)))
 
 (<= (legal xplayer noop)
-(true (control oplayer)))
+    (true (control oplayer)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (<= (goal xplayer 100)
-xline)
+    xline)
 
 (<= (goal xplayer 50)
-(not xline)
-(not oline)
-(not open))
+    (not xline)
+    (not oline)
+    (not open))
 
 (<= (goal xplayer 0)
-oline)
+    oline)
 
 (<= (goal oplayer 100)
-oline)
+    oline)
 
 (<= (goal oplayer 50)
-(not xline)
-(not oline)
-(not open))
+    (not xline)
+    (not oline)
+    (not open))
 
 (<= (goal oplayer 0)
-xline)
+    xline)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (<= terminal
-xline)
+    xline)
 
 (<= terminal
-oline)
+    oline)
 
 (<= terminal
-(not open))
+    (not open))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(<= (space ?x)
+    (line ?x ?y ?z))
+(<= (space ?y)
+    (line ?x ?y ?z))
+(<= (space ?z)
+    (line ?x ?y ?z))
+
+(<= (base (blank ?x))
+    (space ?x))
+(<= (base (ecks ?x))
+    (space ?x))
+(<= (base (oh ?x))
+    (space ?x))
+(<= (base (control ?r))
+    (role ?r))
+
+(<= (input ?player (mark ?y))
+    (role ?player)
+    (space ?y))
+(<= (input ?r noop)
+    (role ?r))
